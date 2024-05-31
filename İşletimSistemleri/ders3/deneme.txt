@@ -1,0 +1,12 @@
+@echo on
+SET FILENAME=ex1
+SET MINGW=C:\MinGW\bin\gcc.exe
+SET OBJDUMP=C:\MinGW\bin\objdump.exe
+SET CD=%cd%
+"%MINGW%" -c "%CD%\%FILENAME%.c" -o "%CD%\%FILENAME%.o"
+"%MINGW%" -S "%CD%\%FILENAME%.c" -fverbose-asm -o "%CD%\%FILENAME%.s"
+"%MINGW%" "%CD%\%FILENAME%.o" -o "%CD%\%FILENAME%.exe"
+REM Programı çalıştır
+START "" CMD /k "%CD%\%FILENAME%.exe"
+"%OBJDUMP%" -x -t -T -D -M inter -S "%CD%\%FILENAME%.o"
+PAUSE
